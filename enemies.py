@@ -52,4 +52,4 @@ def get_random_enemy(seed = None):
     return message
 
 if __name__ == "__main__":
-    print('get_random_enemies()')
+    print(get_random_enemy(input('Please enter who you want to target: ')))
