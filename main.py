@@ -10,8 +10,11 @@ load_dotenv()
 
 class EnemyClient(discord.Client):
     async def on_message(self, message):
-        if message.content[:8] == '!enemies':
-            await message.channel.send(get_random_enemy())
+        if message.content.startswith('!enemies'):
+            if len(message.content) > 9:
+                await message.channel.send(get_random_enemy(message.content[9:]))
+            else:
+                await message.channel.send(get_random_enemy())
 
 client = EnemyClient()
 client.run(os.environ['DISCORD_TOKEN'])
