@@ -55,11 +55,21 @@ class CharacterParser(HTMLParser):
         if self.depth >= 1:
             self.depth = self.depth - 1
 
-def get_random_enemy():
+def get_random_enemy(search = ''):
     character = CharacterParser(True)
+    iteration = 0
     while character and len(character.enemies)==0:
         character = CharacterParser(True)
-        r = requests.get(os.environ['WIKI_URL'] + '/wiki/Special:Random')
+        if search != '':
+            if iteration <= 10:
+                match = requests.get(os.environ['WIKI_URL'] + '/api.php?action=opensearch&search={}&limit=10&namespace=0&format=json'.format(search))
+                match = match.json()
+                r = requests.get(match[3][searchIndex])
+                iteration += 1
+            else:
+                r = requests.get(os.environ['WIKI_URL'] + '/wiki/Special:Random')
+        else:
+            r = requests.get(os.environ['WIKI_URL'] + '/wiki/Special:Random')
         character.feed(r.text)
 
     enemyLink = os.environ['WIKI_URL'] + choice(character.enemies)
@@ -70,4 +80,4 @@ def get_random_enemy():
     return character, enemy
 
 if __name__ == "__main__":
-    print(get_random_enemies())
+    print(get_random_enemy(input('Please enter who you want to target: ')))
