@@ -3,7 +3,8 @@
 These Two Are Enemies
 A set of bots which tell you about some enemies on wikis of your choice.
 """
-import sys, discord_bot, twitter_bot
+import sys
+from lib import discord_bot, twitter_bot
 from dotenv import load_dotenv
 load_dotenv()
 

@@ -58,16 +58,17 @@ class CharacterParser(HTMLParser):
 def get_random_enemy(search = ''):
     character = CharacterParser(True)
     iteration = 0
+    if search != '':
+        match = requests.get(os.environ['WIKI_URL'] + '/api.php?action=opensearch&search={}&limit=10&namespace=0&format=json'.format(search))
+        match = match.json()[3]
     while character and len(character.enemies)==0:
         character = CharacterParser(True)
         if search != '':
-            if iteration <= 10:
-                match = requests.get(os.environ['WIKI_URL'] + '/api.php?action=opensearch&search={}&limit=10&namespace=0&format=json'.format(search))
-                match = match.json()
-                r = requests.get(match[3][searchIndex])
+            if iteration < len(match):
+                r = requests.get(match[iteration])
                 iteration += 1
             else:
-                r = requests.get(os.environ['WIKI_URL'] + '/wiki/Special:Random')
+                return False, False
         else:
             r = requests.get(os.environ['WIKI_URL'] + '/wiki/Special:Random')
         character.feed(r.text)

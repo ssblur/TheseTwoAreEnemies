@@ -1,6 +1,6 @@
 import twitter, os
 from time import sleep
-from enemies import get_random_enemy
+from .enemies import get_random_enemy
 
 def post(api):
     while True:
