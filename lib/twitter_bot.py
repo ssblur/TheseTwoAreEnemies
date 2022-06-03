@@ -28,6 +28,8 @@ def loop(api):
     while True:
         post(api)
         sleep(constants.twitter_period)
+        if constants.once:
+            break
 
 def run():
     api = Api(
