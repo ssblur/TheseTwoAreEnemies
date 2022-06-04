@@ -7,6 +7,8 @@ from html.parser import HTMLParser
 import requests, os
 from random import choice
 
+from lib import constants
+
 class CharacterParser(HTMLParser):
     def __init__(self, find_enemies):
         self.link = ''
@@ -59,7 +61,7 @@ def get_random_enemy(search = ''):
     character = CharacterParser(True)
     iteration = 0
     if search != '':
-        match = requests.get(os.environ['WIKI_URL'] + '/api.php?action=opensearch&search={}&limit=10&namespace=0&format=json'.format(search))
+        match = requests.get(constants.wiki_url + '/api.php?action=opensearch&search={}&limit=10&namespace=0&format=json'.format(search))
         match = match.json()[3]
     while character and len(character.enemies)==0:
         character = CharacterParser(True)
@@ -70,10 +72,10 @@ def get_random_enemy(search = ''):
             else:
                 return False, False
         else:
-            r = requests.get(os.environ['WIKI_URL'] + '/wiki/Special:Random')
+            r = requests.get(constants.wiki_url + '/wiki/Special:Random')
         character.feed(r.text)
 
-    enemyLink = os.environ['WIKI_URL'] + choice(character.enemies)
+    enemyLink = constants.wiki_url + choice(character.enemies)
     enemy = CharacterParser(False)
     r = requests.get(enemyLink)
     enemy.feed(r.text)
