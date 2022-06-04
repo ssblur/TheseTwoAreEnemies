@@ -15,11 +15,11 @@ jobs:
           architecture: 'x64'
           cache: 'pip'
       - run: pip install -r requirements.txt
-      - run: python . --twitter --once
-        env:
-          TWITTER_KEY: ${{ secrets.TWITTER_KEY }}
-          TWITTER_SECRET: ${{ secrets.TWITTER_SECRET }}
-          TWITTER_TOKEN_KEY: ${{ secrets.TWITTER_TOKEN_KEY }}
-          TWITTER_TOKEN_SECRET: ${{ secrets.TWITTER_TOKEN_SECRET }}
-          WIKI_URL: 'https://nickelodeon.fandom.com'
-          TWITTER_MESSAGE: '{character.name} and {enemy.name} are enemies. (Source: {character.link} and {enemy.link})'
+      - run: >
+        python . --twitter --once 
+        --twitter-key '${{ secrets.TWITTER_KEY }}' 
+        --twitter-secret '${{ secrets.TWITTER_SECRET }}' 
+        --twitter-token-key ${{ secrets.TWITTER_TOKEN_KEY }} 
+        --twitter-token-secret ${{ secrets.TWITTER_TOKEN_SECRET }}
+        --wiki-url 'https://nickelodeon.fandom.com'
+        --twitter-message '{character.name} and {enemy.name} are enemies. (Source: {character.link} and {enemy.link})'
