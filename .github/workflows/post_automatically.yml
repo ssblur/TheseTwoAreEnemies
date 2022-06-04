@@ -1,11 +1,13 @@
+name: Post
+
 on:
   schedule:
-    - cron:  '0 20 * * *'
+  - cron:  '5 20 * * *'
 
 jobs:
   post:
     runs-on: ubuntu-latest
-  steps:
+    steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-python@v3
       with:
