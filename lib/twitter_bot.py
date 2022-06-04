@@ -7,6 +7,7 @@ from . import constants
 import threading
 
 def post(api):
+    failures = 0
     while True:
         try:
             character, enemy = get_random_enemy()
@@ -25,6 +26,10 @@ def post(api):
         except Exception as e:
             print('Ran into an error generating that tweet, let\'s try again...')
             traceback.print_exception(e)
+            if failures == 4:
+                print('Too many failures, aborting')
+                break
+            failures += 1
 
 def loop(api):
     while True:
