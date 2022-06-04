@@ -1,4 +1,5 @@
 import os
+import traceback
 from twitter import Api
 from time import sleep
 from .enemies import get_random_enemy
@@ -23,13 +24,14 @@ def post(api):
             break
         except Exception:
             print('Ran into an error generating that tweet, let\'s try again...')
+            traceback.print_last()
 
 def loop(api):
     while True:
         post(api)
-        sleep(constants.twitter_period)
         if constants.once:
             break
+        sleep(constants.twitter_period)
 
 def run():
     api = Api(

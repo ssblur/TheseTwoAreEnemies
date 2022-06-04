@@ -32,7 +32,6 @@ constants.initialize_args(args)
 
 if __name__=='__main__':
     tasks = []
-    # Was originally going to aggregate with asyncio, but I don't want to try to make that compatible with discord.js.
     if constants.twitter:
         twitter_bot.run()
     if constants.discord:
