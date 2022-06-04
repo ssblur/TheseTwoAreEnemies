@@ -5,6 +5,7 @@ wiki_url = None
 
 discord = False
 discord_token = None
+discord_command = None
 discord_message = "{character.name} ( {character.link} ) and {enemy.name} ( {enemy.link} ) are enemies."
 
 twitter = False
