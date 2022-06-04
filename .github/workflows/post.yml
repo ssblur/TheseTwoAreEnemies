@@ -19,7 +19,7 @@ jobs:
           python . --twitter --once 
           --twitter-key '${{ secrets.TWITTER_KEY }}' 
           --twitter-secret '${{ secrets.TWITTER_SECRET }}' 
-          --twitter-token-key ${{ secrets.TWITTER_TOKEN_KEY }} 
-          --twitter-token-secret ${{ secrets.TWITTER_TOKEN_SECRET }}
+          --twitter-token-key '${{ secrets.TWITTER_TOKEN_KEY }}'
+          --twitter-token-secret '${{ secrets.TWITTER_TOKEN_SECRET }}'
           --wiki-url 'https://nickelodeon.fandom.com'
           --twitter-message '{character.name} and {enemy.name} are enemies. (Source: {character.link} and {enemy.link})'
