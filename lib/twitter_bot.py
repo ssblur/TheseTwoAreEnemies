@@ -22,9 +22,9 @@ def post(api):
                     enemy.image
                 ])
             break
-        except Exception:
+        except Exception as e:
             print('Ran into an error generating that tweet, let\'s try again...')
-            traceback.print_last()
+            traceback.print_exception(e)
 
 def loop(api):
     while True:
