@@ -5,6 +5,7 @@ from time import sleep
 from .enemies import get_random_enemy
 from . import constants
 import threading
+from sys import exit
 
 def post(api):
     failures = 0
@@ -28,6 +29,8 @@ def post(api):
             traceback.print_exception(e)
             if failures == 4:
                 print('Too many failures, aborting')
+                if constants.once:
+                    exit(1)
                 break
             failures += 1
 
