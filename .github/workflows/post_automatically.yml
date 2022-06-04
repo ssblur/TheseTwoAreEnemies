@@ -2,7 +2,7 @@ name: Post
 
 on:
   schedule:
-    - cron:  '10 20 * * *'
+    - cron:  '20 20 * * *'
 
 jobs:
   post:
