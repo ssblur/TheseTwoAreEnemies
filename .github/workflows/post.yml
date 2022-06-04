@@ -8,6 +8,13 @@ jobs:
   post:
     runs-on: ubuntu-latest
     steps:
+      - env:
+        TWITTER_KEY: ${{ secrets.TWITTER_KEY }}
+        TWITTER_SECRET: ${{ secrets.TWITTER_SECRET }}
+        TWITTER_TOKEN_KEY: ${{ secrets.TWITTER_TOKEN_KEY }}
+        TWITTER_TOKEN_SECRET: ${{ secrets.TWITTER_TOKEN_SECRET }}
+        WIKI_URL: 'https://nickelodeon.fandom.com'
+        TWITTER_MESSAGE: '{character.name} and {enemy.name} are enemies. (Source: {character.link} and {enemy.link})'
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
         with:
