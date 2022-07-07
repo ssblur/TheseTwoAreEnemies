@@ -27,6 +27,7 @@ def initialize_env():
     discord_message = os.environ['DISCORD_MESSAGE'] if 'DISCORD_MESSAGE' in os.environ else discord_message
 
     twitter_key = os.environ['TWITTER_KEY'] if 'TWITTER_KEY' in os.environ else twitter_key
+    print(len(twitter_key), 'TWITTER_KEY' in os.environ)
     twitter_secret = os.environ['TWITTER_SECRET'] if 'TWITTER_SECRET' in os.environ else twitter_secret
     twitter_token_key = os.environ['TWITTER_TOKEN_KEY'] if 'TWITTER_TOKEN_KEY' in os.environ else twitter_token_key
     twitter_token_secret = os.environ['TWITTER_TOKEN_SECRET'] if 'TWITTER_TOKEN_SECRET' in os.environ else twitter_token_secret
